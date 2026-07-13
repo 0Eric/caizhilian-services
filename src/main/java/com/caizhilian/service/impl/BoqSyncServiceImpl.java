@@ -44,6 +44,10 @@ public class BoqSyncServiceImpl implements BoqSyncService {
                 main.setBizCreateTime(item.getCreateTime());
                 main.setBizLastUpdateTime(item.getLastUpdateTime());
 
+                // TODO 内网环境替换为当前登录用户ID：main.setOwnerId(currentUserId);
+                // TODO 内网环境替换为当前登录用户ID：main.setFounder(currentUserId);
+                // TODO 内网环境替换为当前登录用户ID：main.setLsModifier(currentUserId);
+
                 boqMainRepository.save(main);
 
                 // 处理明细：先清除旧明细，再插入新明细

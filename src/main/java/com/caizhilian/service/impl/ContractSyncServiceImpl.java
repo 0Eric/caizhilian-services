@@ -48,6 +48,10 @@ public class ContractSyncServiceImpl implements ContractSyncService {
                 info.setUnifiedCreditCode(item.getUnifiedCreditCode());
                 info.setContractAmount(item.getContractAmount());
 
+                // TODO 内网环境替换为当前登录用户ID：info.setOwnerId(currentUserId);
+                // TODO 内网环境替换为当前登录用户ID：info.setFounder(currentUserId);
+                // TODO 内网环境替换为当前登录用户ID：info.setLsModifier(currentUserId);
+
                 contractInfoRepository.save(info);
 
                 // 保存合同-项目关联关系

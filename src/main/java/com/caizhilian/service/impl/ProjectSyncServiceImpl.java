@@ -41,6 +41,10 @@ public class ProjectSyncServiceImpl implements ProjectSyncService {
                 info.setProjectName(item.getProjectName());
                 info.setProjectCode(item.getProjectCode());
 
+                // TODO 内网环境替换为当前登录用户ID：info.setOwnerId(currentUserId);
+                // TODO 内网环境替换为当前登录用户ID：info.setFounder(currentUserId);
+                // TODO 内网环境替换为当前登录用户ID：info.setLsModifier(currentUserId);
+
                 projectInfoRepository.save(info);
 
                 feedbackList.add(new SyncFeedback(item.getProjectId(), "项目信息同步成功"));

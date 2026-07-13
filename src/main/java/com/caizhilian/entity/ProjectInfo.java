@@ -29,7 +29,7 @@ public class ProjectInfo {
     @Column(name = "owner_id", length = 36)
     private String ownerId;
 
-    /** 业务状态 */
+    /** 业务状态（默认0=正常） */
     @Column(name = "f_bizstate")
     private Integer fBizstate;
 
@@ -81,12 +81,17 @@ public class ProjectInfo {
 
     @PrePersist
     protected void onCreate() {
-        createTime = LocalDateTime.now();
+        if (createTime == null) createTime = LocalDateTime.now();
         lastTime = LocalDateTime.now();
+        if (ownerId == null) ownerId = "admin";
+        if (fBizstate == null) fBizstate = 0;
+        if (founder == null) founder = 0;
+        if (lsModifier == null) lsModifier = 0;
     }
 
     @PreUpdate
     protected void onUpdate() {
         lastTime = LocalDateTime.now();
+        lsModifier = 0;
     }
 }
