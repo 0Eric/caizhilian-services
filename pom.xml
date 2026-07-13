@@ -66,6 +66,18 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- JUnit 4 Vintage Engine (允许在JUnit5平台上运行JUnit4测试) -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- H2 内存数据库（测试用） -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -79,6 +91,35 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <!-- JaCoCo 单元测试覆盖率 -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- 排除 Entity、Repository、DTO 类（无需单元测试） -->
+                    <excludes>
+                        <exclude>com/caizhilian/entity/**</exclude>
+                        <exclude>com/caizhilian/repository/**</exclude>
+                        <exclude>com/caizhilian/dto/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>

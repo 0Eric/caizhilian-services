@@ -270,3 +270,6 @@ curl -X POST http://localhost:8080/api/sync/projectInfoList \
 | 2026-07-13 | 表名统一加 `customize_` 前缀，新增 7 个通用字段 |
 | 2026-07-13 | 通用字段默认值逻辑（`@PrePersist` / `@PreUpdate`），TODO 移至 Service 层 |
 | 2026-07-13 | 添加 `.gitignore`，清理 git 中的 `target/` 编译文件 |
+| 2026-07-13 | 编写项目 README.md 文档 |
+| 2026-07-13 | 补充 12 个测试类（98 个用例），覆盖 Controller/Service/Client/Config/Common；JUnit4 + Mockito + H2 |
+| 2026-07-13 | pom.xml 添加 JaCoCo 插件，排除 entity/repository/dto 三个包（无需单元测试） |
