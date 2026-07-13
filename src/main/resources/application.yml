@@ -1,0 +1,60 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: caizhilian-services
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/caizhilian
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+
+# ========== API访问白名单 ==========
+# 只有白名单中的IP才能访问服务接口，空列表表示所有IP禁止访问
+# 支持单IP（如 192.168.1.100）和网段（如 10.0.0.0/8, 172.16.0.0/12）
+# 本地测试建议加入 127.0.0.1 和本机局域网IP
+api:
+  whitelist:
+    enabled: true
+    ips:
+      - 127.0.0.1        # 本机IPv4回环地址（localhost），本地调试必加
+      - ::1              # 本机IPv6回环地址（相当于IPv4的127.0.0.1）
+      - 192.168.1.0/24   # 常见内网段：192.168.x.x，家庭/小型办公网络
+      - 10.0.0.0/8       # 大内网段：10.x.x.x，企业局域网常用
+      - 172.16.0.0/12    # 内网段：172.16.0.0 ~ 172.31.255.255，部分企业用
+
+# 受保护路径前缀（可配置多个，支持Ant路径风格）
+    protected-paths:
+      - /api/sync/**
+      - /dap/mock/**
+
+# DAP系统基础地址（Mock模式指向本服务，实际部署改为DAP真实地址）
+dap:
+  base-url: http://localhost:8080/dap/mock
+
+logging:
+  level:
+    com.caizhilian: debug
+    org.hibernate.SQL: debug
