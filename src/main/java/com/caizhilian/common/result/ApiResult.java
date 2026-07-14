@@ -14,6 +14,10 @@ import java.util.List;
  *   "message": "操作成功",
  *   "data": [...]
  * }
+ * 接口反馈编码（
+ * 6100000	OK
+ * 6100010	请求数据格式校验失败
+ * 6100020	网络连接失败）
  */
 @Data
 @NoArgsConstructor
